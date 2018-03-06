@@ -7,7 +7,6 @@
 		"install": "install.cmd"
 	},
 	"os": [
-		"darwin",
 		"win32"
 	],
 	"engines": {
