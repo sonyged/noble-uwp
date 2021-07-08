@@ -318,7 +318,7 @@ namespace NodeUtils
         Local<Object> process = Nan::To<Object>(Nan::Get(GetCurrentContext()->Global(), New<String>("process").ToLocalChecked()).ToLocalChecked()).ToLocalChecked();
         if (!process->Equals(Nan::GetCurrentContext(), Undefined()).FromJust())
         {
-          currentDomain = process->Get(Nan::GetCurrentContext(), New<String>("domain").ToLocalChecked()) ;
+          currentDomain = process->Get(Nan::GetCurrentContext(), New<String>("domain").ToLocalChecked()).ToLocalChecked() ;
         }
 
         Nan::Set(callbackData, New<String>("domain").ToLocalChecked(), currentDomain);
