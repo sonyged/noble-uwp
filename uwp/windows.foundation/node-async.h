@@ -317,7 +317,7 @@ namespace NodeUtils
         Local<Value> currentDomain = Undefined();
 
         Local<Object> process = Nan::To<Object>(Nan::Get(GetCurrentContext()->Global(), New<String>("process").ToLocalChecked()).ToLocalChecked()).ToLocalChecked();
-        if (!process->Equals(Nan::GetCurrentContext(), Undefined()).FromJust())
+        if (!process->Equals(Nan::GetCurrentContext(), Undefined()).FromMaybe(true))
         {
           MaybeLocal<Value> v = process->Get(Nan::GetCurrentContext(), New<String>("domain").ToLocalChecked());
           currentDomain = v.ToLocalChecked() ;
