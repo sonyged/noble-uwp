@@ -36,7 +36,6 @@ namespace NodeUtils
   using v8::Exception;
   using v8::Object;
   using v8::Local;
-  using v8::MaybeLocal;
   using v8::Value;
   using Nan::New;
   using Nan::HandleScope;
@@ -317,11 +316,9 @@ namespace NodeUtils
         Local<Value> currentDomain = Undefined();
 
         Local<Object> process = Nan::To<Object>(Nan::Get(GetCurrentContext()->Global(), New<String>("process").ToLocalChecked()).ToLocalChecked()).ToLocalChecked();
-	bool ev = !process->Equals(Nan::GetCurrentContext(), Undefined()).FromMaybe(true);
-        if (ev)
+        if (!process->Equals(Nan::GetCurrentContext(), Undefined()).FromMaybe(true))
         {
-          MaybeLocal<Value> v = process->Get(Nan::GetCurrentContext(), New<String>("domain").ToLocalChecked());
-          currentDomain = v.ToLocalChecked() ;
+          currentDomain = process->Get(Nan::GetCurrentContext(), New<String>("domain").ToLocalChecked()).ToLocalChecked() ;
         }
 
         Nan::Set(callbackData, New<String>("domain").ToLocalChecked(), currentDomain);
