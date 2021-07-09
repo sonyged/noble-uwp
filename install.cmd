@@ -12,7 +12,7 @@ goto :eof
 :builduwp
 echo Installing NodeRT UWP adapter for %1
 pushd %~dp0uwp\%1
-call node-pre-gyp install --fallback-to-build --msvs_version=2015 %2
+call node-pre-gyp install --fallback-to-build --msvs_version=2017 %2
 if errorlevel 1 exit
 echo.
 popd
